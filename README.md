@@ -20,10 +20,10 @@
 ### 2.2 Courses
 
 - ID;
-- Name;
+- Title;
 - Students ID;
 - Teacher's ID;
-- Total hours;
+- Workload;
 - Classroom.
 
 ### 2.3 Teachers
