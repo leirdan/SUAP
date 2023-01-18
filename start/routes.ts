@@ -8,6 +8,6 @@ Route.get("/", async ({ view }) => {
 Route.group(() => {
   Route.get("/", StudentsController.index);
   Route.get("/:id", StudentsController.findOne);
-  Route.get("/store", StudentsController.store);
-  Route.get("/delete/:id", StudentsController.destroy);
+  Route.post("/store", StudentsController.store);
+  Route.delete("/delete/:id", StudentsController.destroy);
 }).prefix("/students");
