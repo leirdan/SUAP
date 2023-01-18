@@ -2,7 +2,7 @@ import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import Database from "@ioc:Adonis/Lucid/Database";
 import Student from "App/Models/Student";
 
-export default class StudentsController {
+class StudentsController {
   public async index({}: HttpContextContract) {
     await Student.query()
       .select()
@@ -51,3 +51,5 @@ export default class StudentsController {
     }
   }
 }
+
+export default new StudentsController();
