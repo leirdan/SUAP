@@ -17,4 +17,5 @@ Route.group(() => {
   Route.get("/", CoursesController.index);
   Route.post("/store", CoursesController.store);
   Route.delete("/delete/:id", CoursesController.delete);
+  Route.post("/enroll/:id", CoursesController.enroll);
 }).prefix("/courses");

@@ -9,7 +9,7 @@ import Course from "./Course";
 
 export default class Student extends BaseModel {
   @column({ isPrimary: true })
-  protected id: number;
+  public id: number;
 
   @column()
   public firstName: string;
