@@ -4,7 +4,7 @@ import StudentsController from "App/Controllers/Http/StudentsController";
 import TeachersController from "App/Controllers/Http/TeachersController";
 
 Route.get("/", async ({ view }) => {
-  return view.render("welcome");
+  return view.render("homepage");
 });
 
 Route.group(() => {
