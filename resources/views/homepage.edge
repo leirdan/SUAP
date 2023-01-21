@@ -1,7 +1,50 @@
 @layout("layout/main")
 
+@section("messages_homepage")
+<div class="d-flex flex-column align-items-stretch flex-shrink-0 bg-white" style="width: 380px;">
+  <a href="/" class="d-flex align-items-center flex-shrink-0 p-3 link-dark text-decoration-none">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="16" fill="currentColor" class="bi bi-envelope-exclamation-fill me-3" viewBox="0 0 16 16">
+      <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.026A2 2 0 0 0 2 14h6.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.606-3.446l-.367-.225L8 9.586l-1.239-.757ZM16 4.697v4.974A4.491 4.491 0 0 0 12.5 8a4.49 4.49 0 0 0-1.965.45l-.338-.207L16 4.697Z"/>
+      <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.5-5v1.5a.5.5 0 0 1-1 0V11a.5.5 0 0 1 1 0Zm0 3a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0Z"/>
+    </svg>
+    <span class="fs-5 fw-semibold">Your messages</span>
+  </a>
+
+
+  @each(messages in inbox)
+
+  <div class="list-group list-group-flush border-bottom scrollarea">
+    <a href="#" class="list-group-item list-group-item-action active py-3 lh-sm" aria-current="true">
+      <div class="d-flex w-100 align-items-center justify-content-between">
+        <strong class="mb-1">{{messages.title}}</strong>
+        <small>{{messages.date}}</small>
+      </div>
+      <div class="col-10 mb-1 small">{{messages.description}}</div>
+    </a>
+  </div>
+
+  @end
+</div>
+
+@end
+
 @section("content")
 
 <h3 class="text-center mt-4">Welcome to SUAP!</h3>
+<div class="col">
+  <div class="card" style="width: 18rem;">
+    <div class="card-header fw-bolder">
+      <!--TODO: add icons to the items !-->
+      Education
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><a href="/students/:id" class="btn btn-secondary"> Student's data</a></li>
+      <li class="list-group-item"><a href="#" class="btn btn-secondary"> Exams </a></li>
+      <li class="list-group-item"> <a href="/courses" class="btn btn-secondary"> Courses </a></li>
+      <li class="list-group-item"><a href="#" class="btn btn-secondary"> E-mail </a></li>
+      <li class="list-group-item"><a href="#" class="btn btn-secondary"> Schedule </a></li>
+    </ul>
+  </div>
+</div>
 
 @end
