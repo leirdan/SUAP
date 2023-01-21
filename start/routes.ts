@@ -1,6 +1,7 @@
 import Route from "@ioc:Adonis/Core/Route";
 import CoursesController from "App/Controllers/Http/CoursesController";
 import StudentsController from "App/Controllers/Http/StudentsController";
+import TeachersController from "App/Controllers/Http/TeachersController";
 
 Route.get("/", async ({ view }) => {
   return view.render("welcome");
@@ -19,3 +20,10 @@ Route.group(() => {
   Route.delete("/delete/:id", CoursesController.delete);
   Route.post("/enroll/:id", CoursesController.enroll);
 }).prefix("/courses");
+
+Route.group(() => {
+  Route.get("/", TeachersController.index);
+  Route.post("/store", TeachersController.store);
+  Route.get("/update", TeachersController.update);
+  Route.delete("/delete/:id", TeachersController.delete);
+}).prefix("/teachers");
