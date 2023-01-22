@@ -1,0 +1,25 @@
+@layout("layouts/main")
+
+@section("content")
+  <form action="/courses/store" method="POST">
+    <div class="row">
+      <div class="col-lg-12">
+        <label class="form-label" for="title">Title from the course</label>
+        <input type="text" name="title" class="form-control">
+      </div>
+      <div class="col-lg-6">
+        <label class="form-label" for="classroom">In which classroom it will happen?</label>
+        <input type="text" name="classroom" class="form-control">
+      </div>
+      <div class="col-lg-6">
+        <label class="form-label" for="workload">Workload </label>
+        <input type="number" name="workload" class="form-control">
+      </div>
+      <div class="col">
+        <button type="submit" class="btn btn-primary">Create a new course</button>
+      </div>
+    </div>
+
+  </form>
+
+  @end

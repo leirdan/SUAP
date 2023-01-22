@@ -15,6 +15,10 @@ class CoursesController {
       });
   }
 
+  public async create({ view }: HttpContextContract) {
+    return view.render("courses/form_create");
+  }
+
   public async store({ request, response }: HttpContextContract) {
     const newCourse = request.only(["title", "workload", "classroom"]);
     try {
