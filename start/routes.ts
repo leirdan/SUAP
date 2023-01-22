@@ -18,7 +18,7 @@ Route.group(() => {
 Route.group(() => {
   Route.get("/", CoursesController.index);
   Route.post("/store", CoursesController.store);
-  Route.delete("/delete/:id", CoursesController.delete);
+  Route.get("/delete/:id", CoursesController.delete);
   Route.post("/enroll/:id", CoursesController.enroll);
 }).prefix("/courses");
 
@@ -26,5 +26,5 @@ Route.group(() => {
   Route.get("/", TeachersController.index);
   Route.post("/store", TeachersController.store);
   Route.get("/update", TeachersController.update);
-  Route.delete("/delete/:id", TeachersController.delete);
+  Route.get("/delete/:id", TeachersController.delete);
 }).prefix("/teachers");

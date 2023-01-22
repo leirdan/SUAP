@@ -1,0 +1,25 @@
+@layout("layouts/main")
+
+@section("content")
+<div class="row">
+  <h2 class="text-center">All courses presented</h2>
+  <a href="/courses/create" class="btn btn-primary"> Add a new course </a>
+</div>
+
+@each(course in courses)
+<div class="card" style="width: 18rem;">
+  <div class="card-header">
+    <h4 class="text-center">{{course.title}}</h4>
+  </div>
+  <div class="card-body">
+    <p> It has {{course.workload}} and will happen in the {{course.classroom}}</p>
+  </div>
+  <div class="card-footer">
+    <a href="/courses/edit/{{course.id}}" class="mx-2 btn btn-outline-info"> Edit infos</a>
+    <a href="/courses/delete/{{course.id}}" class="mx-1 btn btn-outline-dark"> Delete student </a>
+  </div>
+</div>
+
+@end
+
+@end

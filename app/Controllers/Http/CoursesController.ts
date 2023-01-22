@@ -3,12 +3,12 @@ import Course from "App/Models/Course";
 import Student from "App/Models/Student";
 
 class CoursesController {
-  public async index({ response }: HttpContextContract) {
+  public async index({ view, response }: HttpContextContract) {
     await Course.query()
-      .select()
+      .select("*")
       .orderBy("title", "asc")
       .then((courses) => {
-        response.status(200).json(courses);
+        return view.render("courses/home", { courses: courses });
       })
       .catch((err) => {
         response.status(400).send(err);
