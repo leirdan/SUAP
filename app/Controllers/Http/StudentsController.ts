@@ -46,15 +46,19 @@ class StudentsController {
 
   public async update({}: HttpContextContract) {}
 
-  public async destroy({ params, response }: HttpContextContract) {
+  public async delete({ params, response }: HttpContextContract) {
     const id = params.id;
     try {
       const std = await Student.find(id);
-      await std?.delete().then(() => {
-        response.status(200).send("deleted it!");
-      });
+      if (std) {
+        await std.delete().then(() => {
+          response.redirect("/students");
+        });
+      }
     } catch (err) {
-      console.log("it doesn't exist a student with this id: " + err);
+      response
+        .status(400)
+        .send("it doesn't exist a student with this id: " + err);
     }
   }
 }

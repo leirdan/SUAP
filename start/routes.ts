@@ -12,7 +12,7 @@ Route.group(() => {
   Route.get("/:id", StudentsController.findOne);
   Route.get("/create", StudentsController.create);
   Route.post("/store", StudentsController.store);
-  Route.delete("/delete/:id", StudentsController.destroy);
+  Route.get("/delete/:id", StudentsController.delete);
 }).prefix("/students");
 
 Route.group(() => {

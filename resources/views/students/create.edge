@@ -1,0 +1,13 @@
+@layout('layout/main')
+
+@section('content')
+<form action="/students/store" method="post">
+  <div class="row">
+    <div class="col-lg-6">
+      <label class="form-control" for="firstName">Student's first name</label>
+      <input type="text" name="firstName" class="form-input">
+    </div>
+  </div>
+
+</form>
+@end
