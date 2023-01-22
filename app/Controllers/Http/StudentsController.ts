@@ -19,28 +19,25 @@ class StudentsController {
       .catch((err) => console.error(err));
   }
 
-  public async create({ view }: HttpContextContract) {
-    return view.render("students/create");
+  public async create({ view }: HttpContextContract): Promise<String> {
+    return view.render("students/form_create");
   }
-
   public async store({ request, response }: HttpContextContract) {
     const newStd = request.only([
-      "first_name",
-      "last_name",
+      "firstName",
+      "lastName",
       "cpf",
       "email",
       "password",
     ]);
     try {
-      await Student.create(newStd).then((std) => {
-        response.status(200).json(std);
+      await Student.create(newStd).then(() => {
+        response.redirect("/students");
       });
     } catch (err) {
       response.status(400).send(err);
     }
   }
-
-  public async show({}: HttpContextContract) {}
 
   public async edit({}: HttpContextContract) {}
 
