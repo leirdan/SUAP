@@ -1,7 +1,7 @@
 @layout("layouts/main")
 
 @section("content")
-  <form action="{{route("student_store")}}" method="POST">
+  <form action="/students/store" method="POST">
     <div class="row">
       <div class="col-lg-6">
         <label class="form-label" for="firstName">Student's first name</label>
@@ -22,6 +22,9 @@
       <div class="col-lg-3">
         <label class="form-label" for="password">Insert the password</label>
         <input type="password" name="password" class="form-control">
+      </div>
+      <div class="col">
+        <button type="submit" class="btn btn-primary"> Add a new student </button>
       </div>
     </div>
 

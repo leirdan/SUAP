@@ -17,6 +17,7 @@ Route.group(() => {
 
 Route.group(() => {
   Route.get("/", CoursesController.index);
+  Route.get("/create", CoursesController.create);
   Route.post("/store", CoursesController.store);
   Route.get("/delete/:id", CoursesController.delete);
   Route.post("/enroll/:id", CoursesController.enroll);
