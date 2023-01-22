@@ -1,0 +1,24 @@
+@layout("layout/main")
+
+@section("content")
+<div class="row">
+  <h2 class="text-center col col-lg-9 mt-3">all students ordered from newest to oldest</h2>
+  <a href="/students/create" class="col-lg-2 col btn btn-primary my-4 mx-4">Add new student</a>
+</div>
+@each (student in stds)
+  <div class="card" style="width: 18rem;">
+    <div class="card-header">
+      <h4 class="text-center">{{student.lastName}}, {{student.firstName}}</h4>
+    </div>
+    <div class="card-body">
+      <strong>Email: </strong> {{student.email}}
+    </div>
+    <div class="card-footer">
+      <a href="/students/edit/{{student.id}}" class="mx-2 btn btn-outline-info"> Edit infos</a>
+      <a href="/students/delete/{{student.id}}" class="mx-1 btn btn-outline-dark"> Delete student </a>
+    </div>
+  </div>
+@end
+
+
+@end

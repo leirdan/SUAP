@@ -2,14 +2,12 @@ import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import Student from "App/Models/Student";
 
 class StudentsController {
-  public async index({ response }: HttpContextContract) {
-    await Student.query()
-      .select()
-      .orderBy("first_name", "asc")
-      .then((std) => {
-        response.status(200).json(std);
-      })
-      .catch((err) => console.error(err));
+  public async index({ view, response }: HttpContextContract) {
+    const students = await Student.query()
+      .select("*")
+      .orderBy("id", "desc")
+      .catch((err) => response.status(400).send(err));
+    return view.render("students/home", { stds: students });
   }
 
   public async findOne({ params, response }: HttpContextContract) {
@@ -21,7 +19,9 @@ class StudentsController {
       .catch((err) => console.error(err));
   }
 
-  public async create({}: HttpContextContract) {}
+  public async create({ view }: HttpContextContract) {
+    return view.render("students/create");
+  }
 
   public async store({ request, response }: HttpContextContract) {
     const newStd = request.only([
