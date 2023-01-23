@@ -23,6 +23,9 @@ export default class Course extends BaseModel {
   @column()
   public classroom: string;
 
+  @column()
+  protected teacherId: number;
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime;
 

@@ -19,9 +19,9 @@
         <input type="number" name="workload" class="form-control">
       </div>
       <div class="col-lg-6 my-2">
-        <label for="">Which teacher will minister this course?</label>
+        <label for="teacherId">Which teacher will minister this course?</label>
           @if (teachers)
-          <select name="teacher" class="form-select mt-2">
+          <select name="teacherId" class="form-select mt-2">
           @each (teacher in teachers)
             <option value="{{teacher.id}}">{{teacher.firstName}} {{teacher.lastName}}</option>
           @end

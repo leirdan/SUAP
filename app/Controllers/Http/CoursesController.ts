@@ -27,18 +27,11 @@ class CoursesController {
       "title",
       "workload",
       "classroom",
-      "teacher",
+      "teacherId",
     ]);
-    const teacher = newCourse.teacher;
-    const createCommand = await Course.create(newCourse);
-    console.log("test");
     try {
-      await createCommand
-        .related("teacher")
-        .associate(teacher)
-        .then(() => {
-          response.redirect("/teachers");
-        });
+      await Course.create(newCourse);
+      response.redirect("/courses");
     } catch (err) {
       response.status(400).send(err);
     }
@@ -52,7 +45,7 @@ class CoursesController {
         .where("id", id)
         .whereNotNull("id")
         .delete();
-      response.status(200).redirect("/course");
+      response.redirect("/courses");
     } catch (err) {
       response.status(400).send(err);
     }
