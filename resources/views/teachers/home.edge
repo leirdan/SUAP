@@ -1,9 +1,9 @@
 @layout("layouts/main")
 
 @section("content")
-<div class="row">
-  <h2 class="text-center">All teachers who can teach you!</h2>
-  <a href="/teachers/create" class="btn btn-primary"> Add a new teacher </a>
+<div class="row container">
+  <h2 class="text-center col-lg-10">All teachers who can teach you!</h2>
+  <a href="/teachers/create" class="btn btn-primary col-lg-2 my-4"> Add a new teacher </a>
 </div>
 
 @each(teacher in teachers)
