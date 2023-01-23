@@ -32,13 +32,32 @@ class TeachersController {
       });
   }
 
-  public async update({ params }: HttpContextContract) {
-    const teacher = await Teacher.find(params.id);
+  public async edit({ view, params, response }: HttpContextContract) {
+    const id = params.id;
+    const teacher = await Teacher.find(id);
     if (teacher) {
-      // TODO: u need to code this with the view
+      return view.render("teachers/form_edit", { teacher: teacher });
     } else {
-      console.log("this teacher doesn't exist!");
+      response.status(400).send("this teacher doesn't exist!");
     }
+  }
+
+  public async update({ request, response }: HttpContextContract) {
+    const teacherUpdated = request.only([
+      "firstName",
+      "lastName",
+      "cpf",
+      "graduation",
+    ]);
+    await Teacher.query()
+      .where("cpf", teacherUpdated.cpf)
+      .update(teacherUpdated)
+      .then(() => {
+        response.redirect("/teachers");
+      })
+      .catch((err) => {
+        response.status(400).send(err);
+      });
   }
 
   public async delete({ params }: HttpContextContract) {
