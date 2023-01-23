@@ -1,6 +1,7 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import Course from "App/Models/Course";
 import Student from "App/Models/Student";
+import Teacher from "App/Models/Teacher";
 
 class CoursesController {
   public async index({ view, response }: HttpContextContract) {
@@ -15,16 +16,36 @@ class CoursesController {
       });
   }
 
-  public async create({ view }: HttpContextContract) {
-    return view.render("courses/form_create");
+  public async create({ view, response }: HttpContextContract) {
+    const teachers = await Teacher.query()
+      .select("*")
+      .from("teachers")
+      .orderBy("firstName", "asc");
+    try {
+      return view.render("courses/form_create", { teachers: teachers });
+    } catch (err) {
+      response.status(400).send("oops, something has ocurred: " + err);
+    }
   }
 
   public async store({ request, response }: HttpContextContract) {
-    const newCourse = request.only(["title", "workload", "classroom"]);
+    const newCourse = request.only([
+      "title",
+      "workload",
+      "classroom",
+      "teacher",
+    ]);
+    const teacher = newCourse.teacher;
+
     try {
-      await Course.create(newCourse).then(() => {
-        response.status(200).send("created a new course!");
-      });
+      await (
+        await Course.create(newCourse)
+      )
+        .related("teacher")
+        .associate(teacher)
+        .then(() => {
+          response.redirect("/teachers");
+        });
     } catch (err) {
       response.status(400).send(err);
     }
@@ -65,4 +86,5 @@ class CoursesController {
     }
   }
 }
+
 export default new CoursesController();

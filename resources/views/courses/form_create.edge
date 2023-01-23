@@ -2,18 +2,30 @@
 
 @section("content")
   <form action="/courses/store" method="POST">
-    <div class="row">
+    <div class="row container">
       <div class="col-lg-12">
         <label class="form-label" for="title">Title from the course</label>
         <input type="text" name="title" class="form-control">
       </div>
-      <div class="col-lg-6">
+      <div class="col-lg-4 my-2">
         <label class="form-label" for="classroom">In which classroom it will happen?</label>
         <input type="text" name="classroom" class="form-control">
       </div>
-      <div class="col-lg-6">
+      <div class="col-lg-2 my-2">
         <label class="form-label" for="workload">Workload </label>
         <input type="number" name="workload" class="form-control">
+      </div>
+      <div class="col-lg-6">
+        <label for="">Which teacher will minister this course?</label>
+          @if (teachers)
+          @each (teacher in teachers)
+          <select name="teacher" id="">
+            <option value="{{teacher.id}}">{{teacher.firstName}} {{teacher.lastName}}</option>
+          @end
+          @else
+            <p>There's no teachers in your institution...</p>
+          @end
+        </select>
       </div>
       <div class="col">
         <button type="submit" class="btn btn-primary">Create a new course</button>
