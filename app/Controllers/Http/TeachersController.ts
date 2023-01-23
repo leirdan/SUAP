@@ -63,9 +63,8 @@ class TeachersController {
   public async delete({ params, response }: HttpContextContract) {
     const teacher = await Teacher.find(params.id);
     if (teacher) {
-      teacher.delete().then(() => {
-        response.redirect("/teachers");
-      });
+      teacher.delete();
+      response.redirect("/teachers");
     } else {
       console.log("this teacher doesn't exist!");
     }
