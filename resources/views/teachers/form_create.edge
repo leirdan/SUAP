@@ -1,0 +1,28 @@
+@layout("layouts/main")
+
+@section("content")
+  <form action="/teachers/store" method="POST">
+    <div class="row container">
+      <div class="col-lg-6">
+        <label class="form-label" for="firstName">Teacher's first name</label>
+        <input type="text" name="firstName" class="form-control">
+      </div>
+      <div class="col-lg-6">
+        <label class="form-label" for="lastName">Teacher's last name</label>
+        <input type="text" name="lastName" class="form-control">
+      </div>
+      <div class="col-lg-4 my-2">
+        <label class="form-label" for="cpf">Teacher's CPF </label>
+        <input type="number" name="cpf" class="form-control">
+      </div>
+      <div class="col-lg-8 my-2">
+        <label class="form-label" for="graduation">Tell us in which area this teacher has a graduation?</label>
+        <input type="email" name="graduation" class="form-control">
+      </div>
+      <div class="col">
+        <button type="submit" class="btn btn-primary mt-4"> Add a new teacher </button>
+      </div>
+    </div>
+
+  </form>
+@end

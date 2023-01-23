@@ -14,6 +14,10 @@ class TeachersController {
       });
   }
 
+  public async create({ view }: HttpContextContract) {
+    return view.render("teachers/form_create");
+  }
+
   public async store({ request }: HttpContextContract) {
     const newTeacher = request.only([
       "firstName",
