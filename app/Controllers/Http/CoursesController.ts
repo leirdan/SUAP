@@ -5,15 +5,13 @@ import Teacher from "App/Models/Teacher";
 
 class CoursesController {
   public async index({ view, response }: HttpContextContract) {
-    await Course.query()
+    const courses = await Course.query()
       .select("*")
       .orderBy("title", "asc")
-      .then((courses) => {
-        return view.render("courses/home", { courses: courses });
-      })
       .catch((err) => {
         response.status(400).send(err);
       });
+    return view.render("courses/home", { courses: courses });
   }
 
   public async create({ view, response }: HttpContextContract) {

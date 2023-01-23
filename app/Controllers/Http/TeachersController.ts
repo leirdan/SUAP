@@ -3,22 +3,20 @@ import Teacher from "App/Models/Teacher";
 
 class TeachersController {
   public async index({ view, response }: HttpContextContract) {
-    await Teacher.query()
+    const teachers = await Teacher.query()
       .select("*")
       .orderBy("last_name", "asc")
-      .then((teachers) => {
-        return view.render("/teachers/home", { teachers: teachers });
-      })
       .catch((err) => {
         response.status(400).send(err);
       });
+    return view.render("teachers/home", { teachers: teachers });
   }
 
   public async create({ view }: HttpContextContract) {
     return view.render("teachers/form_create");
   }
 
-  public async store({ request }: HttpContextContract) {
+  public async store({ request, response }: HttpContextContract) {
     const newTeacher = request.only([
       "firstName",
       "lastName",
@@ -26,7 +24,9 @@ class TeachersController {
       "graduation",
     ]);
     await Teacher.create(newTeacher)
-      .then(() => {})
+      .then(() => {
+        response.redirect("/teachers");
+      })
       .catch((err) => {
         console.log(err);
       });
