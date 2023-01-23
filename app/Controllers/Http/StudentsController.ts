@@ -19,7 +19,7 @@ class StudentsController {
       .catch((err) => console.error(err));
   }
 
-  public async create({ view }: HttpContextContract): Promise<String> {
+  public async create({ view }: HttpContextContract) {
     return view.render("students/form_create");
   }
   public async store({ request, response }: HttpContextContract) {
