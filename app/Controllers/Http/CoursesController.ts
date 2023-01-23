@@ -14,16 +14,12 @@ class CoursesController {
     return view.render("courses/home", { courses: courses });
   }
 
-  public async create({ view, response }: HttpContextContract) {
+  public async create({ view }: HttpContextContract) {
     const teachers = await Teacher.query()
       .select("*")
       .from("teachers")
       .orderBy("firstName", "asc");
-    try {
-      return view.render("courses/form_create", { teachers: teachers });
-    } catch (err) {
-      response.status(400).send("oops, something has ocurred: " + err);
-    }
+    return view.render("courses/form_create", { teachers: teachers });
   }
 
   public async store({ request, response }: HttpContextContract) {
@@ -56,7 +52,7 @@ class CoursesController {
         .where("id", id)
         .whereNotNull("id")
         .delete();
-      response.status(200).send("deleted it!");
+      response.status(200).redirect("/course");
     } catch (err) {
       response.status(400).send(err);
     }
