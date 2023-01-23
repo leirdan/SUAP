@@ -2,12 +2,12 @@ import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import Teacher from "App/Models/Teacher";
 
 class TeachersController {
-  public async index({ response }: HttpContextContract) {
+  public async index({ view, response }: HttpContextContract) {
     await Teacher.query()
       .select("*")
       .orderBy("last_name", "asc")
       .then((teachers) => {
-        response.status(200).json(teachers);
+        return view.render("/teachers/home", { teachers: teachers });
       })
       .catch((err) => {
         response.status(400).send(err);
