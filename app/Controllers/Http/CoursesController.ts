@@ -34,11 +34,10 @@ class CoursesController {
       "teacher",
     ]);
     const teacher = newCourse.teacher;
-
+    const createCommand = await Course.create(newCourse);
+    console.log("test");
     try {
-      await (
-        await Course.create(newCourse)
-      )
+      await createCommand
         .related("teacher")
         .associate(teacher)
         .then(() => {

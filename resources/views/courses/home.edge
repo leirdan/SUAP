@@ -5,21 +5,25 @@
   <h2 class="text-center col-lg-10">All courses presented</h2>
   <a href="/courses/create" class="btn btn-primary col-lg-2 my-4"> Add a new course </a>
 </div>
+<div class="row row-cols-1 row-cols-lg-4 g-4">
+  @each(course in courses)
+  <div class="col">
+    <div class="card" style="width: 18rem;">
+      <div class="card-header">
+        <h4 class="text-center">{{course.title}}</h4>
+      </div>
+      <div class="card-body">
+        <p> It has {{course.workload}} and will happen in the {{course.classroom}}</p>
+      </div>
+      <div class="card-footer">
+        <a href="/courses/edit/{{course.id}}" class="mx-2 btn btn-outline-info"> Edit infos</a>
+        <a href="/courses/delete/{{course.id}}" class="mx-1 btn btn-outline-dark"> Delete course </a>
+      </div>
+    </div>
+  </div>
+  </div>
+  @end
 
-@each(course in courses)
-<div class="card" style="width: 18rem;">
-  <div class="card-header">
-    <h4 class="text-center">{{course.title}}</h4>
-  </div>
-  <div class="card-body">
-    <p> It has {{course.workload}} and will happen in the {{course.classroom}}</p>
-  </div>
-  <div class="card-footer">
-    <a href="/courses/edit/{{course.id}}" class="mx-2 btn btn-outline-info"> Edit infos</a>
-    <a href="/courses/delete/{{course.id}}" class="mx-1 btn btn-outline-dark"> Delete course </a>
-  </div>
 </div>
-
-@end
 
 @end

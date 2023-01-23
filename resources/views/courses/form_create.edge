@@ -1,6 +1,9 @@
 @layout("layouts/main")
 
 @section("content")
+
+<h3 class="text-center">Course creation form</h3>
+
   <form action="/courses/store" method="POST">
     <div class="row container">
       <div class="col-lg-12">
@@ -15,11 +18,11 @@
         <label class="form-label" for="workload">Workload </label>
         <input type="number" name="workload" class="form-control">
       </div>
-      <div class="col-lg-6">
+      <div class="col-lg-6 my-2">
         <label for="">Which teacher will minister this course?</label>
           @if (teachers)
+          <select name="teacher" class="form-select mt-2">
           @each (teacher in teachers)
-          <select name="teacher" id="">
             <option value="{{teacher.id}}">{{teacher.firstName}} {{teacher.lastName}}</option>
           @end
           @else
