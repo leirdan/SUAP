@@ -10,15 +10,6 @@ class StudentsController {
     return view.render("students/home", { stds: students });
   }
 
-  public async findOne({ params, response }: HttpContextContract) {
-    const id = params.id;
-    await Student.find(id)
-      .then((std) => {
-        response.status(200).json(std);
-      })
-      .catch((err) => console.error(err));
-  }
-
   public async create({ view }: HttpContextContract) {
     return view.render("students/form_create");
   }

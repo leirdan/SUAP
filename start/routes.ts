@@ -9,8 +9,7 @@ Route.get("/", async ({ view }) => {
 
 Route.group(() => {
   Route.get("/", StudentsController.index);
-  Route.get("/:id", StudentsController.findOne);
-  Route.get("/create", StudentsController.create).as("std.create");
+  Route.get("/create", StudentsController.create);
   Route.post("/store", StudentsController.store);
   Route.get("/delete/:id", StudentsController.delete);
 }).prefix("/students");
