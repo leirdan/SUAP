@@ -5,7 +5,7 @@
 <h3 class="text-center">Student creation form</h3>
 
   <form action="/students/store" method="POST">
-    <div class="row">
+    <div class="row container">
       <div class="col-lg-6">
         <label class="form-label" for="firstName">Student's first name</label>
         <input type="text" name="firstName" class="form-control">
@@ -14,19 +14,19 @@
         <label class="form-label" for="lastName">Student's last name</label>
         <input type="text" name="lastName" class="form-control">
       </div>
-      <div class="col-lg-4">
+      <div class="col-lg-4 my-2">
         <label class="form-label" for="cpf">Student's CPF </label>
         <input type="number" name="cpf" class="form-control">
       </div>
-      <div class="col-lg-5">
+      <div class="col-lg-5 my-2">
         <label class="form-label" for="email">Student's email</label>
         <input type="email" name="email" class="form-control">
       </div>
-      <div class="col-lg-3">
+      <div class="col-lg-3 my-2">
         <label class="form-label" for="password">Insert the password</label>
         <input type="password" name="password" class="form-control">
       </div>
-      <div class="col">
+      <div class="col my-4">
         <button type="submit" class="btn btn-primary"> Add a new student </button>
       </div>
     </div>
