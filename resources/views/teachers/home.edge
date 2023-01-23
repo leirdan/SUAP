@@ -1,0 +1,25 @@
+@layout("layouts/main")
+
+@section("content")
+<div class="row">
+  <h2 class="text-center">All teachers who can teach you!</h2>
+  <a href="/teachers/create" class="btn btn-primary"> Add a new teacher </a>
+</div>
+
+@each(teacher in teachers)
+<div class="card" style="width: 18rem;">
+  <div class="card-header">
+    <h4 class="text-center">{{teacher.lastName}}, {{teacher.firstName}}</h4>
+  </div>
+  <div class="card-body">
+    <p> This teacher is graduated in {{teacher.graduation}} area.</p>
+  </div>
+  <div class="card-footer">
+    <a href="/teacher/edit/{{teacher.id}}" class="mx-2 btn btn-outline-info"> Edit infos</a>
+    <a href="/teacher/delete/{{teacher.id}}" class="mx-1 btn btn-outline-dark"> Delete student </a>
+  </div>
+</div>
+
+@end
+
+@end

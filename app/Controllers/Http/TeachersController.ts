@@ -5,7 +5,7 @@ class TeachersController {
   public async index({ response }: HttpContextContract) {
     await Teacher.query()
       .select("*")
-      .orderBy("first_name", "desc")
+      .orderBy("last_name", "asc")
       .then((teachers) => {
         response.status(200).json(teachers);
       })
