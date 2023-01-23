@@ -1,0 +1,34 @@
+@layout("layouts/main")
+
+@section("content")
+
+<h3 class="text-center">Student update form</h3>
+
+@if(student)
+
+<form action="/students/update" method="POST">
+    <div class="row container">
+      <div class="col-lg-6">
+        <label class="form-label" for="firstName">Student's first name</label>
+        <input type="text" name="firstName" class="form-control" value="{{student.firstName}}">
+      </div>
+      <div class="col-lg-6">
+        <label class="form-label" for="lastName">Student's last name</label>
+        <input type="text" name="lastName" class="form-control" value="{{student.lastName}}">
+      </div>
+      <div class="col-lg-4 my-2">
+        <label class="form-label" for="cpf">Student's CPF </label>
+        <input type="number" name="cpf" class="form-control" value="{{student.cpf}}">
+      </div>
+      <div class="col-lg-8 my-2">
+        <label class="form-label" for="email">Student's email</label>
+        <input type="email" name="email" class="form-control" value="{{student.email}}">
+      </div>
+      <div class="col my-4">
+        <button type="submit" class="btn btn-primary"> Update student </button>
+      </div>
+    </div>
+
+</form>
+@end
+@end

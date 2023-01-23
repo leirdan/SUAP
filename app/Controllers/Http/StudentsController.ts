@@ -30,9 +30,33 @@ class StudentsController {
     }
   }
 
-  public async edit({}: HttpContextContract) {}
+  public async edit({ params, view, response }: HttpContextContract) {
+    const id = params.id;
+    const student = await Student.find(id);
+    if (student) {
+      return view.render("students/form_edit", { student: student });
+    } else {
+      response.status(400).send("this student doesn't exist!");
+    }
+  }
 
-  public async update({}: HttpContextContract) {}
+  public async update({ request, response }: HttpContextContract) {
+    const studentUpdated = request.only([
+      "firstName",
+      "lastName",
+      "cpf",
+      "email",
+    ]);
+    await Student.query()
+      .where("cpf", studentUpdated.cpf)
+      .update(studentUpdated)
+      .then(() => {
+        response.redirect("/students");
+      })
+      .catch((err) => {
+        response.status(400).send(err);
+      });
+  }
 
   public async delete({ params, response }: HttpContextContract) {
     const id = params.id;
