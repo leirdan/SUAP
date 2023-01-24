@@ -36,6 +36,19 @@ class CoursesController {
     }
   }
 
+  public async edit({ params, view, response }: HttpContextContract) {
+    const id = params.id;
+    const course = await Course.find(id);
+    const teachers = await Teacher.query()
+      .select("*")
+      .orderBy("first_name", "asc");
+    if (course) {
+      return view.render("courses/form_edit", { course, teachers });
+    } else {
+      response.status(400).send("this course doesn't exist!");
+    }
+  }
+
   public async delete({ params, response }: HttpContextContract) {
     const id = params.id;
     try {
