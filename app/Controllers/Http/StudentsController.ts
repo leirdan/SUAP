@@ -84,12 +84,23 @@ class StudentsController {
       .catch((err) => {
         console.log(err);
       });
-    console.log("executed");
     if (student) {
       return view.render("students/enroll_page", { student, courses });
     }
   }
-  public async enroll({}: HttpContextContract) {}
+  public async enroll({ params, request, response }: HttpContextContract) {
+    const studentId = params.id;
+    const courseId = request.only(["courseId"]);
+
+    const student = await Student.find(studentId);
+    const course = await Course.find(courseId.courseId);
+
+    if (course && student) {
+      course.related("students").attach([student.id]);
+      course.save();
+      response.redirect("/students");
+    }
+  }
 }
 
 export default new StudentsController();
