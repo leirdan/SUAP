@@ -3,10 +3,10 @@
 @section("content")
 <div class="row">
   <h2 class="text-center col col-lg-9 mt-3">All students ordered from newest to oldest</h2>
-  <a href="/students/create" class="col-lg-2 col btn btn-primary my-4 mx-4" role="button"> Add new student </a>
+  <a href="/students/create" class="btn btn-primary col-lg-2 my-4" role="button"> Add new student </a>
 </div>
 
-<div class="row row-cols-lg-4 row-cols-2">
+<div class="row row-cols-lg-4 row-cols-2 mt-3 container">
   @each (student in stds)
   <div class="card mx-2 my-lg-0 my-2" style="width: 18rem;">
     <div class="card-header">

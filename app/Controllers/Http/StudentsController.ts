@@ -8,6 +8,7 @@ class StudentsController {
       .select("*")
       .orderBy("id", "desc")
       .catch((err) => response.status(400).send(err));
+
     return view.render("students/home", { stds: students });
   }
 
@@ -75,7 +76,7 @@ class StudentsController {
     }
   }
 
-  public async enrollPage({ params, view, response }: HttpContextContract) {
+  public async enrollPage({ params, view }: HttpContextContract) {
     const id = params.id;
     const student = await Student.find(id);
     const courses = await Course.query()
