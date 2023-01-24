@@ -49,6 +49,23 @@ class CoursesController {
     }
   }
 
+  public async update({ request, response }: HttpContextContract) {
+    const courseUpdated = request.only([
+      "title",
+      "workload",
+      "classroom",
+      "teacherId",
+      "courseId",
+    ]);
+    await Course.query()
+      .where("title", courseUpdated.title)
+      .update(courseUpdated)
+      .catch((err) => {
+        response.status(400).send(err);
+      });
+    response.redirect("/courses");
+  }
+
   public async delete({ params, response }: HttpContextContract) {
     const id = params.id;
     try {

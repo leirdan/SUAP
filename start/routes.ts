@@ -23,6 +23,7 @@ Route.group(() => {
   Route.get("/create", CoursesController.create);
   Route.post("/store", CoursesController.store);
   Route.get("/edit/:id", CoursesController.edit);
+  Route.post("/update", CoursesController.update);
   Route.get("/delete/:id", CoursesController.delete);
 }).prefix("/courses");
 
