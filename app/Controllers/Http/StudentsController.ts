@@ -1,4 +1,5 @@
 import type { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
+import Course from "App/Models/Course";
 import Student from "App/Models/Student";
 
 class StudentsController {
@@ -73,6 +74,22 @@ class StudentsController {
         .send("it doesn't exist a student with this id: " + err);
     }
   }
+
+  public async enrollPage({ params, view, response }: HttpContextContract) {
+    const id = params.id;
+    const student = await Student.find(id);
+    const courses = await Course.query()
+      .select("*")
+      .orderBy("title", "asc")
+      .catch((err) => {
+        console.log(err);
+      });
+    console.log("executed");
+    if (student) {
+      return view.render("students/enroll_page", { student, courses });
+    }
+  }
+  public async enroll({}: HttpContextContract) {}
 }
 
 export default new StudentsController();

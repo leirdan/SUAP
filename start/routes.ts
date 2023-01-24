@@ -14,6 +14,8 @@ Route.group(() => {
   Route.get("/edit/:id", StudentsController.edit);
   Route.post("/update", StudentsController.update);
   Route.get("/delete/:id", StudentsController.delete);
+  Route.get("/enrollment/:id", StudentsController.enrollPage);
+  Route.post("/enroll/:id", StudentsController.enroll);
 }).prefix("/students");
 
 Route.group(() => {
@@ -21,7 +23,6 @@ Route.group(() => {
   Route.get("/create", CoursesController.create);
   Route.post("/store", CoursesController.store);
   Route.get("/delete/:id", CoursesController.delete);
-  Route.post("/enroll/:id", CoursesController.enroll);
 }).prefix("/courses");
 
 Route.group(() => {
